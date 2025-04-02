@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>green indoor plant nursery | Indoor Plant Nursery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #2e7d32;
+            --light-green: #81c784;
+            --lighter-green: #e8f5e9;
+            --dark-green: #1b5e20;
+            --white: #ffffff;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .navbar {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        .logo h1 {
+            color: var(--primary-green);
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+        
+        .logo p {
+            color: var(--light-green);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+        
+        .nav-link {
+            color: var(--dark-green);
+            font-weight: 500;
+            position: relative;
+            margin: 0 0.5rem;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-green);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-green);
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), 
+                        url('https://images.unsplash.com/photo-1517191434949-5e90cd67d2b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            color: var(--dark-green);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            color: #555;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+        
+        .cta-button {
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .cta-button:hover {
+            background-color: var(--dark-green);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0,0,0,0.15);
+        }
+        
+        .section-title {
+            color: var(--dark-green);
+            font-size: 2.8rem;
+            margin-bottom: 4rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background-color: var(--primary-green);
+            bottom: -15px;
+            left: 25%;
+            border-radius: 2px;
+        }
+        
+        .featured-categories {
+            background-color: var(--lighter-green);
+            padding: 6rem 0;
+        }
+        
+        .category-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .category-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .category-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .category-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .category-info {
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .category-info h3 {
+            color: var(--dark-green);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .category-info p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .view-button {
+            background-color: transparent;
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+            padding: 0.7rem 1.8rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .view-button:hover {
+            background-color: var(--primary-green);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .about-section {
+            padding: 6rem 0;
+        }
+        
+        .about-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transform: rotate(-2deg);
+            transition: transform 0.5s ease;
+        }
+        
+        .about-image:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.1);
+        }
+        
+        .about-content h2 {
+            color: var(--dark-green);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-content p {
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .services-section {
+            background-color: var(--lighter-green);
+            padding: 6rem 0;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            transition: all 0.5s ease;
+            margin-bottom: 2rem;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        
+        .service-card.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-card h3 {
+            color: var(--dark-green);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        .testimonials-section {
+            padding: 6rem 0;
+        }
+        
+        .testimonial-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            text-align: left;
+            transition: all 0.5s ease;
+            margin-bottom: 2rem;
+            transform: scale(0.95);
+            opacity: 0;
+        }
+        
+        .testimonial-card.animate {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+        
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            color: var(--dark-green);
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-info p {
+            color: var(--light-green);
+            font-size: 0.9rem;
+        }
+        
+        .contact-section {
+            background-color: var(--lighter-green);
+            padding: 6rem 0;
+        }
+        
+        .contact-info h2 {
+            color: var(--dark-green);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info p {
+            color: #555;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .contact-text h4 {
+            color: var(--dark-green);
+            margin-bottom: 0.2rem;
+        }
+        
+        .contact-text p {
+            color: #666;
+            margin: 0;
+        }
+        
+        .contact-form {
+            background-color: var(--white);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            color: var(--dark-green);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+        }
+        
+        footer {
+            background-color: var(--dark-green);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .footer-column p, .footer-column a {
+            color: white;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            opacity: 0.8;
+            text-decoration: none;
+        }
+        
+        .footer-column a:hover {
+            opacity: 1;
+            color: var(--light-green);
+        }
+        
+        .social-media-icons {
+        font-size: 24px;
+        margin: 10px;
+}
+
+    .social-media-icons a {
+    margin-right: 10px;
+     color: #ffffff;
+    transition: color 0.2s ease;
+}
+
+.social-media-icons a:hover {
+  color: #af3939;
+}
+        
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+        
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        /* Bootstrap overrides */
+        .pt-100 {
+            padding-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <div class="logo">
+                <h1>Green Indoor Plant Nursery</h1>
+                <p>Bringing Nature Indoors</p>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Our Plants</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content animate__animated animate__fadeInLeft">
+                        <h2>Discover the Joy of Indoor Plants</h2>
+                        <p>Transform your living space with our carefully curated collection of indoor plants. Each plant is nurtured with care to bring life and beauty to your home.</p>
+                        <button class="cta-button animate__animated animate__pulse animate__infinite">Explore Our Collection</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-categories pt-100" id="plants">
+        <div class="container">
+            <h2 class="section-title text-center">View By Category</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Succulents">
+                        <div class="category-info">
+                            <h3>Succulents</h3>
+                            <p>Perfect for beginners and busy plant lovers, these resilient plants thrive with minimal care.</p>
+                            <button class="view-button">View Collection</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1512428813834-c702c7702b78?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Tropical Plants">
+                        <div class="category-info">
+                            <h3>Tropical Plants</h3>
+                            <p>Bring the lushness of the jungle into your home with these vibrant foliage plants.</p>
+                            <button class="view-button">View Collection</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80" alt="Flowering Plants">
+                        <div class="category-info">
+                            <h3>Flowering Plants</h3>
+                            <p>Add bursts of color and delightful fragrances to your indoor spaces.</p>
+                            <button class="view-button">View Collection</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section pt-100" id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-image animate__animated animate__fadeInLeft">
+                        <img src="about.jpg" alt="Our Nursery">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-content animate__animated animate__fadeInRight">
+                        <h2>Our Story</h2>
+                        <p>Founded in 2010, Green Indoor Plant Nursery began as a small family-owned nursery with a passion for bringing the beauty of nature indoors. What started as a humble backyard operation has grown into one of the region's most trusted sources for healthy, vibrant indoor plants.</p>
+                        <button class="cta-button">Learn More About Us</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section pt-100" id="services">
+        <div class="container">
+            <h2 class="section-title text-center">Our Services</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-icon">🌿</div>
+                        <h3>Plant Selection</h3>
+                        <p>Our experts will help you choose the perfect plants for your space, lighting conditions.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card delay-1">
+                        <div class="service-icon">💧</div>
+                        <h3>New Hybrids</h3>
+                        <p>learn proper plant care techniques from our horticulture specialists.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card delay-2">
+                        <div class="service-icon">🏡</div>
+                        <h3>Interior Planting</h3>
+                        <p>Let us design and install beautiful indoor plant displays tailored to your space and aesthetic.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section pt-100">
+        <div class="container">
+            <h2 class="section-title text-center">What Our Customers Say</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"The plants I bought from green indoor plant nursery have transformed my apartment into a green oasis. Their staff was incredibly knowledgeable and helped me pick plants that would thrive in my north-facing windows."</p>
+                        <div class="testimonial-author d-flex align-items-center">
+                            <div class="author-image">
+                                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="">
+                            </div>
+                            <div class="author-info">
+                                <h4>Sarah J.</h4>
+                                <p>Happy Customer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card delay-1">
+                        <p class="testimonial-text">"The plants I bought from green indoor plant nursery have transformed my apartment into a green oasis. Their staff was incredibly knowledgeable and helped me pick plants that would thrive in my north-facing windows."</p>
+                        <div class="testimonial-author d-flex align-items-center">
+                            <div class="author-image">
+                                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="">
+                            </div>
+                            <div class="author-info">
+                                <h4>Tintu</h4>
+                                <p>Happy Customer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card delay-2">
+                        <p class="testimonial-text">"The plants I bought from green indoor plant nursery have transformed my apartment into a green oasis. Their staff was incredibly knowledgeable and helped me pick plants that would thrive in my north-facing windows."</p>
+                        <div class="testimonial-author d-flex align-items-center">
+                            <div class="author-image">
+                                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="">
+                            </div>
+                            <div class="author-info">
+                                <h4>Rajesh</h4>
+                                <p>Happy Customer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section pt-100" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="contact-info animate__animated animate__fadeInLeft">
+                        <h2>Visit Us</h2>
+                        <p>We'd love to help you find the perfect plants for your space. Visit our nursery or get in touch with any questions.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">📍</div>
+                                <div class="contact-text">
+                                    <h4>Address</h4>
+                                    <p>123 Manglapuram, Tvm</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">🕒</div>
+                                <div class="contact-text">
+                                    <h4>Hours</h4>
+                                    <p>Monday-Friday: 9am-7pm<br>Saturday-Sunday: 10am-5pm</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">📞</div>
+                                <div class="contact-text">
+                                    <h4>Phone</h4>
+                                    <p>95617463</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">✉️</div>
+                                <div class="contact-text">
+                                    <h4>Email</h4>
+                                    <p>hello@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="contact-form animate__animated animate__fadeInRight">
+                        <h3>Send Us a Message</h3>
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" class="form-control" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-button btn w-100">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="footer-column">
+                        <h3>green indoor plant nursery</h3>
+                        <p>Bringing the beauty of nature indoors since 2010. We're committed to providing the highest quality plants with sustainable practices.</p>
+                        <div class="social-links">
+                            <a href="#" class="floating">🌱</a>
+                            <a href="#" class="floating delay-1">🌿</a>
+                            <a href="#" class="floating delay-2">🍃</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="footer-column">
+                        <h3>Quick Links</h3>
+                        <p><a href="#home">Home</a></p>
+                        <p><a href="#plants">Our Plants</a></p>
+                        <p><a href="#services">Services</a></p>
+                        <p><a href="#about">About Us</a></p>
+                        <p><a href="#contact">Contact</a></p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="footer-column">
+                        <div class="social-media-icons">
+                          <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                          <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                          <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                </div>
+            </div>
+            <div class="footer-bottom text-center pt-4">
+                <p>&copy; 2025 Green Indoor Plant Nursery. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements when they come into view
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.category-card, .service-card, .testimonial-card');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementPosition < windowHeight - 100) {
+                        element.classList.add('animate');
+                    }
+                });
+            };
+            
+            // Run on initial load
+            animateOnScroll();
+            
+            // Run on scroll
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('.nav-link').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Floating animation for service icons
+            const serviceIcons = document.querySelectorAll('.service-icon');
+            serviceIcons.forEach(icon => {
+                icon.classList.add('floating');
+            });
+        });
+    </script>
+</body>
+</html>
